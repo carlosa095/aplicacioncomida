@@ -8,7 +8,7 @@
 		<link type = "text/css" href = "estilo.css" rel = "stylesheet"/>
 		<script type="text/javascript" charset="utf-8">
 			function queryDB(tx) {
-				tx.executeSql('SELECT * FROM productos where id_producto = 1', [], querySuccess, errorCB);
+				tx.executeSql('SELECT * FROM productos where id_producto = ?', ["1"], querySuccess, errorCB);
 				navigator.notification.alert("Entro a consulta");
 			}
 			
