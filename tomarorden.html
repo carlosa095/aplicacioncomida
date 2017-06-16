@@ -7,29 +7,7 @@
         <title>Aplicación Comida</title>
 		<link type = "text/css" href = "estilo.css" rel = "stylesheet"/>
 		<script type="text/javascript" charset="utf-8">
-			function queryDB(tx) {
-				tx.executeSql('SELECT * FROM productos where id_producto = ?', [1], function (tx, results) {
-				//var len = results.rows.length;
-				navigator.notification.alert("Consulta");
-				/*for (var i=0; i<len; i++){
-				var p = results.rows.item(i);
-				window.alert("id_producto = " + p.id_producto);*/
-				}
-			}, errorCB);
-				navigator.notification.alert("Entro a consulta");
-			}
 			
-			
-			
-			function errorCB(err) {
-				navigator.notification.alert("Error processing SQL: "+err.code);
-			}
-			
-			function obtenerDatos() {
-				var db = window.openDatabase("AplicacionComida", "1.0", "PhoneGap Demo", 200000);
-				db.transaction(queryDB, errorCB);
-				window.alert("Funcion");
-			}
 		</script>
     </head>
     <body>
@@ -42,10 +20,19 @@
 			</div>
 			<div class = "filas2">
 				<div class = "contenedor3">
-					<ul>
-						<li><a href = "" onclick = "obtenerDatos()">Opción2</a></li>
-						<li><a href = "">Opción2</a></li>
-						<li><a href = "">Opción2</a></li>
+					<ul id = "lista">
+						<script>
+							var db = window.openDatabase("DEMO", "1.0", "PhoneGap Demo", 200000);
+							db.transaction(queryDB, errorCB);
+							function queryDB(tx) {
+								tx.executeSql('SELECT nombre_p, precio FROM PRODUCTOS', [], function (tx, results) {
+								var len = results.rows.length;
+								for (var i=0; i<len; i++){
+								var p = results.rows.item(i);
+								document.getElementById("lista").innerHTML("<li>" + p.nombre_p+ " " + p.precio + "<input type = 'number'></li>");
+								}}, errorCB);
+							}
+						</script>
 					</ul>
 				</div>
 			</div>
