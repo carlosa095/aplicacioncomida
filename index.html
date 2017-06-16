@@ -1,118 +1,47 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-        <title>Aplicación Comida</title>
-		<link type = "text/css" href = "estilo.css" rel = "stylesheet"/>
-		<script type="text/javascript" charset="utf-8" src="phonegap-1.2.0.js"></script>
-		<script type="text/javascript" charset="utf-8">
-
-		// Espera cargar
-		//
-		document.addEventListener("deviceready", onDeviceReady, false);
-
-		// Llena base 
-		//
-		function populateDB(tx) {
-			tx.executeSql('CREATE TABLE IF NOT EXISTS PRODUCTOS (id_producto INT, nombre_p TEXT NOT NULL, precio TEXT NOT NULL)');
-			//tx.executeSql('CREATE TABLE IF NOT EXISTS ordenes (id_orden INT NOT NULL PRIMARY KEY AUTOINCREMENT)');
-			//tx.executeSql('CREATE TABLE IF NOT EXISTS detalle_ordenes (id_orden INT NOT NULL, id_producto INTEGER NOT NULL, cantidad INTEGER NOT NULL, precio TEXT NOT NULL)');
-			
-			//tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (2, "Tacos de pastor", "12")');
-			//tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (3, "Tacos de alambre", "12")');
-			//tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (4, "Tacos de arrachera", "12")');
-			//tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (5, "Burritos de bisteck", "25")');
-			//tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (6, "Burritos de arrachera", "30")');
-			//tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (7, "Jugo", "12")');
-			//tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (8, "Refresco", "12")');
-			//tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (9, "Agua", "10")');
-		}
-
-		// Consulta
-		//
-		
-
-		// Respuesta de consulta correcta
-		//
-		function querySuccess(tx, results) {
-			var len = results.rows.length;
-			alert("DEMO table: " + len + " rows found.");
-			for (var i=0; i<len; i++){
-				alert("Row = " + i + " ID = " + results.rows.item(i).id_producto + " Data =  " + results.rows.item(i).nombre_p);
-			}
-		}
-
-		// Transaccion error
-		//
-		function errorCB(err) {
-			navigator.notification.alert("Error processing SQL: "+err.code);
-		}
-
-		
-		function queryDB(tx) {
-				tx.executeSql('SELECT * FROM productos', [], function (tx, results) {
-				//var len = results.rows.length;
-				window.alert("Consulta");
-				/*for (var i=0; i<len; i++){
-				var p = results.rows.item(i);
-				window.alert("id_producto = " + p.id_producto);*/
-				}
-			}, errorCB);
-				navigator.notification.alert("Entro a consulta");
-			}
-			
-			function insertar2(tx) {
-				tx.executeSql('INSERT INTO PRODUCTOS (id_producto, nombre_p, precio) VALUES (1, "Tacos de bisteck", "12")');
-				alert("Se inserto");
-			}
-			
-			function insertar() {
-				var db = window.openDatabase("AplicacionComida", "1.0", "PhoneGap Demo", 200000);
-				db.transaction(insertar2, errorCB);
-			}
-			
-			function obtenerDatos() {
-				var db = window.openDatabase("AplicacionComida", "1.0", "PhoneGap Demo", 200000);
-				db.transaction(queryDB, errorCB);
-				window.alert("Funcion");
-			}
-		
-		// Correcta
-		//
-		function successCB() {
-			//var db = window.openDatabase("AplicacionComida", "1.0", "PhoneGap Demo", 200000);
-			navigator.notification.alert("Base");
-			//db.transaction(queryDB, errorCB);
-		}
-
-		// PhoneGap is ready
-		//
-		function onDeviceReady() {
-			navigator.notification.alert("Hola");
-			var db = window.openDatabase("AplicacionComida", "1.0", "PhoneGap Demo", 200000);
-			db.transaction(populateDB, errorCB, successCB);
-		}
-
+  <head>
+    <title>Example</title>
+ 
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8">
+ 
+    // Wait for PhoneGap to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+ 
+    // PhoneGap is ready
+    //
+    function onDeviceReady() {
+        var db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
+        db.transaction(populateDB, errorCB, successCB);
+    }
+ 
+    // Populate the database 
+    //
+    function populateDB(tx) {
+         tx.executeSql('DROP TABLE IF EXISTS DEMO');
+         tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, data)');
+         tx.executeSql('INSERT INTO DEMO (id, data) VALUES (1, "First row")');
+         tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
+    }
+ 
+    // Transaction error callback
+    //
+    function errorCB(tx, err) {
+        navigator.notification.alert("Error processing SQL: "+err);
+    }
+ 
+    // Transaction success callback
+    //
+    function successCB() {
+        navigator.notification.alert("success!");
+    }
+ 
     </script>
-    </head>
-    <body>
-        <script type="text/javascript" src="cordova.js"></script>
-		<div class = "contenedor1">
-			<div class = "filas1">
-				<div class = "contenedor2">
-					<h1>Comida</h1>
-				</div>
-			</div>
-			<div class = "filas2">
-				<div class = "contenedor3">
-					<ul>
-						<li><a href = "tomarorden.html">Tomar Orden</a></li>
-						<li><input type = "button" onclick = "obtenerDatos()" value = "Ordenes"></li>
-						<li><input type = "button" onclick = "insertar()" value = "Insertar"></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-    </body>
+  </head>
+  <body>
+    <h1>Example</h1>
+    <p>Database</p>
+  </body>
 </html>
