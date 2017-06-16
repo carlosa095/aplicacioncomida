@@ -17,7 +17,7 @@
 		// PhoneGap is ready
 		//
 		function onDeviceReady() {
-			var db = window.openDatabase("AplicacionComida", "1.0", "PhoneGap Demo", 200000);
+			var db = window.openDatabase("DEMO", "1.0", "PhoneGap Demo", 200000);
 			db.transaction(populateDB, errorCB, successCB);
 		}
 	 
@@ -52,9 +52,8 @@
 		}
 
 		function queryDB(tx) {
-				tx.executeSql('SELECT * FROM productos', [], function (tx, results) {
+				tx.executeSql('SELECT * FROM PRODUCTOS', [], function (tx, results) {
 				var len = results.rows.length;
-				navigator.notification.alert("Consulta");
 				for (var i=0; i<len; i++){
 				var p = results.rows.item(i);
 				window.alert("id_producto = " + p.id_producto);
@@ -62,7 +61,7 @@
 			}
 			
 			function obtenerDatos() {
-				var db = window.openDatabase("AplicacionComida", "1.0", "PhoneGap Demo", 200000);
+				var db = window.openDatabase("DEMO", "1.0", "PhoneGap Demo", 200000);
 				db.transaction(queryDB, errorCB);
 			}
 
