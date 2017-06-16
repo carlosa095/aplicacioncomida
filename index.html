@@ -1,91 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-        <title>Aplicación Comida</title>
-		<link type = "text/css" href = "estilo.css" rel = "stylesheet"/>
-		<script type="text/javascript" charset="utf-8" src="phonegap-1.2.0.js"></script>
-		<script type="text/javascript" charset="utf-8">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+<title>Modificar Alumno</title>
+<link type="text/css" href="estiloformularios.css" rel="stylesheet" />
+<script type="text/javascript" charset="utf-8" src="phonegap-1.2.0.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
 
-		// Espera cargar
-		//
-		document.addEventListener("deviceready", onDeviceReady, false);
+<script>
+	function buscar() {
+		var id = document.getElementById("id").value;
+		$.ajax({
+		url:"http://sistemacontroles.esy.es/consultaalumno.php",
+		type: "get",
+		data: {"id_alumno":id}, 
+		success: function(result) {
+		navigator.notification.alert("funciono");
+	}});
+	}
+</script>
 
-		// Llena base 
-		//
-		function populateDB(tx) {
-			tx.executeSql('CREATE TABLE IF NOT EXISTS productos (id_producto INTEGER NOT NULL PRIMARY KEY, nombre_p TEXT NOT NULL, precio TEXT NOT NULL)');
-			tx.executeSql('CREATE TABLE IF NOT EXISTS ordenes (id_orden INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT)');
-			tx.executeSql('CREATE TABLE IF NOT EXISTS detalle_ordenes (id_orden INTEGER NOT NULL, id_producto INTEGER NOT NULL, cantidad INTEGER NOT NULL, precio TEXT NOT NULL)');
-			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (1, "Tacos de bisteck", "12")');
-			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (2, "Tacos de pastor", "12")');
-			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (3, "Tacos de alambre", "12")');
-			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (4, "Tacos de arrachera", "12")');
-			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (5, "Burritos de bisteck", "25")');
-			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (6, "Burritos de arrachera", "30")');
-			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (7, "Jugo", "12")');
-			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (8, "Refresco", "12")');
-			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (9, "Agua", "10")');
-		}
+</head>
 
-		// Consulta
-		//
-		function queryDB(tx) {
-			tx.executeSql('SELECT * FROM productos', [], querySuccess, errorCB);
-		}
-
-		// Respuesta de consulta correcta
-		//
-		function querySuccess(tx, results) {
-			var len = results.rows.length;
-			navigator.notification.alert("DEMO table: " + len + " rows found.");
-			for (var i=0; i<len; i++){
-				navigator.notification.alert("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
-			}
-		}
-
-		// Transaccion error
-		//
-		function errorCB(err) {
-			console.log("Error processing SQL: "+err.code);
-		}
-
-		// Correcta
-		//
-		function successCB() {
-			var db = window.openDatabase("AplicacionComida", "1.0", "PhoneGap Demo", 200000);
-			navigator.notification.alert("Se insertaron los datos");
-			db.transaction(queryDB, errorCB);
-		}
-
-		// PhoneGap is ready
-		//
-		function onDeviceReady() {
-			navigator.notification.alert("Hola");
-			var db = window.openDatabase("AplicacionComida", "1.0", "PhoneGap Demo", 200000);
-			db.transaction(populateDB, errorCB, successCB);
-		}
-
-    </script>
-    </head>
-    <body>
-        <script type="text/javascript" src="cordova.js"></script>
-		<div class = "contenedor1">
-			<div class = "filas1">
-				<div class = "contenedor2">
-					<h1>Comida</h1>
-				</div>
-			</div>
-			<div class = "filas2">
-				<div class = "contenedor3">
-					<ul>
-						<li><a href = "tomarorden.html">Tomar Orden</a></li>
-						<li><a href = "listaordenes.html">Ordenes</a></li>
-						<li><a href = "cobrar.html">Cobrar</a></li>
-					</ul>
-				</div>
-			</div>
+<body>
+<div class="contenedor1">
+	<div class="filas">
+		<div class="contenedorheader">
+			<a href = "http://sistemacontroles.esy.es/index.php" class = "principal"><img src = "Asistencia/PNG.png" width = "10px" height = "50px" class = "imagen_principal"/><a href = "http://sistemacontroles.esy.es/logout.php" class = "cerrar_sesion">Cerrar Sesión</a><label class = "nombre_usuario"><?php echo $_SESSION['username'];?></label>
 		</div>
-    </body>
+	</div>
+	<div class="filas">
+		<div class = "contenedor3">
+		  <form id="form1" name="form1" method="post" action="modificaralumno.php">
+		    <h1>Ingresar Alumnos</h1>
+			<div class = "lado1">
+		    <div class="formulario">
+		    <div class="etiqueta">
+				<label>Id:</label></div><div class="textbox"><input type =  "text" name = "id_alumno" value = "<?php echo ''.$id_alumno.''?>" id = "id">
+		    </div>
+			</div>
+			<input type="submit" value = "Guardar" class = "boton">
+			<input type="button" value = "Buscar" class = "boton" onclick = "buscar();">
+	      </form>
+	      </div>
+  </div>
+</div>
+</body>
 </html>
