@@ -9,11 +9,11 @@
 		<script type="text/javascript" charset="utf-8">
 			function queryDB(tx) {
 				tx.executeSql('SELECT * FROM productos where id_producto = ?', [1], function (tx, results) {
-				var len = results.rows.length;
+				//var len = results.rows.length;
 				navigator.notification.alert("Consulta");
-				for (var i=0; i<len; i++){
+				/*for (var i=0; i<len; i++){
 				var p = results.rows.item(i);
-				window.alert("id_producto = " + p.id_producto);
+				window.alert("id_producto = " + p.id_producto);*/
 				}
 			}, errorCB);
 				navigator.notification.alert("Entro a consulta");
