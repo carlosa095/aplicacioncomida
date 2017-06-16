@@ -57,7 +57,7 @@ ul.inicio li a {
 	text-decoration: none;
 }
 
-input[type:number] {
+input[type=number] {
 	width: 25px;
 	height: 25px;
 }
@@ -74,4 +74,6 @@ input[type:number] {
 	height: 50px;
 	font-family: Arial;
 	text-align: center;
+	color: white;
+	font-size: 20px;
 }
