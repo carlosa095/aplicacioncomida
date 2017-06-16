@@ -33,7 +33,7 @@ body {
 	padding-top: 50px;
 }
 
-ul {
+.inicio {
 	list-style: none;
 	width: 50%;
 	margin-left: 25%;
@@ -43,7 +43,7 @@ ul {
 	border-radius: 5px;
 }
 
-ul li {
+ul.inicio li {
 	height: 25px;
 	font-family: Arial;
 	text-align: center;
@@ -52,7 +52,21 @@ ul li {
 	border-radius: 5px;
 }
 
-ul li a {
+ul.inicio li a {
 	color: white;
 	text-decoration: none;
+}
+
+#lista {
+	list-style: none;
+	width: 100%;
+	background-color: #894200;
+	padding: 0px;
+	border-radius: 5px;
+}
+
+#lista li {
+	height: 30px;
+	font-family: Arial;
+	text-align: center;
 }
