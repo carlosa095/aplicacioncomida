@@ -8,10 +8,10 @@
 		<script type="text/javascript" src="cordova.js"></script>
 		<script type="text/javascript" charset="utf-8">
 		
-			document.addEventListener("deviceready", onDeviceReady, false);
+			document.addEventListener("bodyload", onBodyLoad, false);
 			
-			function onDeviceReady() {
-				avigator.notification.alert("función");
+			function onBodyLoad() {
+				navigator.notification.alert("función");
 				var db = window.openDatabase("DEMO", "1.0", "PhoneGap Demo", 200000);
 				db.transaction(queryDB, errorCB);
 			}
