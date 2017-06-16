@@ -5,9 +5,6 @@
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
         <title>Aplicación Comida</title>
 		<link type = "text/css" href = "estilo.css" rel = "stylesheet"/>
-		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 		<script type="text/javascript" src="cordova.js"></script>
 		<script type="text/javascript" charset="utf-8">
 		
@@ -29,43 +26,20 @@
 					var li  = document.createElement('li');
 					//var num = document.createElement('input');
 					//num.setAttribute("type","number");
-					li.innerHTML = "" + p.nombre_p+ " " + p.precio + "<div class='quantity'><input type = 'number' step = '1'></div></li>";
+					li.innerHTML = "" + p.nombre_p+ " " + p.precio + " <input type = 'button' id = 'incrementar"+i+"' value = '+' onclick = 'incrementar(text"+i+");'><input type = 'number' value = '0' id = 'text"+i+"'><input type = 'button' id = 'disminuir"+i+"' value = '-' onclick = 'disminuir(text"+i+")'></li>";
 					document.getElementById("lista").appendChild(li);
 				}}, errorCB);
 			}
 			
-			    jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
-				jQuery('.quantity').each(function() {
-				  var spinner = jQuery(this),
-					input = spinner.find('input[type="number"]'),
-					btnUp = spinner.find('.quantity-up'),
-					btnDown = spinner.find('.quantity-down'),
-					min = input.attr('min'),
-					max = input.attr('max');
-
-				  btnUp.click(function() {
-					var oldValue = parseFloat(input.val());
-					if (oldValue >= max) {
-					  var newVal = oldValue;
-					} else {
-					  var newVal = oldValue + 1;
-					}
-					spinner.find("input").val(newVal);
-					spinner.find("input").trigger("change");
-				  });
-
-				  btnDown.click(function() {
-					var oldValue = parseFloat(input.val());
-					if (oldValue <= min) {
-					  var newVal = oldValue;
-					} else {
-					  var newVal = oldValue - 1;
-					}
-					spinner.find("input").val(newVal);
-					spinner.find("input").trigger("change");
-				  });
-
-				});
+			function incrementar(id) {
+				var numero = document.getElementById(id).value;
+				numero = numero + 1;
+			}
+			
+			function disminuir(id) {
+				var numero = document.getElementById(id).value;
+				numero = numero - 1;
+			}
 		</script>
     </head>
     <body onload = "mensaje()">
