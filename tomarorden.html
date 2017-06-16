@@ -8,18 +8,18 @@
 		<link type = "text/css" href = "estilo.css" rel = "stylesheet"/>
 		<script type="text/javascript" charset="utf-8">
 			function queryDB(tx) {
-				tx.executeSql('SELECT * FROM productos where id_producto = ?', ["1"], querySuccess, errorCB);
-				navigator.notification.alert("Entro a consulta");
-			}
-			
-			function querySuccess(tx, results) {
+				tx.executeSql('SELECT * FROM productos where id_producto = ?', [1], function (tx, results) {
 				//var len = results.rows.length;
 				navigator.notification.alert("Consulta");
 				/*for (var i=0; i<len; i++){
 				var p = results.rows.item(i);
 				navigator.notification.alert("id_producto = " + p.id_producto + " nombre =  " + p.nombre_p);
 				}*/
+			}, errorCB);
+				navigator.notification.alert("Entro a consulta");
 			}
+			
+			
 			
 			function errorCB(err) {
 				navigator.notification.alert("Error processing SQL: "+err.code);
