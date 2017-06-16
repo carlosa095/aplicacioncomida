@@ -57,6 +57,11 @@ ul.inicio li a {
 	text-decoration: none;
 }
 
+input[type:number] {
+	width: 25px;
+	height: 25px;
+}
+
 #lista {
 	list-style: none;
 	width: 100%;
@@ -66,7 +71,7 @@ ul.inicio li a {
 }
 
 #lista li {
-	height: 30px;
+	height: 25px;
 	font-family: Arial;
 	text-align: center;
 }
