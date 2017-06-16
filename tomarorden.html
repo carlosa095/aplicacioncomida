@@ -24,7 +24,7 @@
 				for (var i=0; i<len; i++){
 					var p = results.rows.item(i);
 					var tr  = document.createElement('tr');
-					tr.innerHTML = "<td>" + p.nombre_p+ "</td><td>" + p.precio + "</td><td><input type = 'button' id = 'incrementar"+i+"' value = '+' onclick = 'incrementar(\'text"+i+"\');'><input type = 'number' value = '0' id = 'text"+i+"'><input type = 'button' id = 'disminuir"+i+"' value = '-' onclick = 'disminuir(\'text"+i+"\')'></td>";
+					tr.innerHTML = "<td class = 'nombre'>" + p.nombre_p+ "</td><td class = 'nump'>" + p.precio + "</td><td class = 'botones'><input type = 'button' value = '+' onclick = 'incrementar(\"text"+i+"\");'><input type = 'number' value = '0' id = 'text"+i+"'><input type = 'button' value = '-' onclick = 'disminuir(\"text"+i+"\")'></td>";
 					document.getElementById("lista").appendChild(tr);
 				}}, errorCB);
 			}
