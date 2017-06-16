@@ -24,13 +24,13 @@
 				for (var i=0; i<len; i++){
 					var p = results.rows.item(i);
 					var tr  = document.createElement('tr');
-					tr.innerHTML = "<td class = 'nombre'>" + p.nombre_p+ "</td><td class = 'nump'>" + p.precio + "</td><td class = 'botones'><input type = 'button' value = '+' onclick = 'incrementar(\"text"+i+"\");' class 'botonfuncion'><input type = 'number' value = '0' id = 'text"+i+"'><input type = 'button' value = '-' onclick = 'disminuir(\"text"+i+"\")' class = 'botonfuncion'></td>";
+					tr.innerHTML = "<td class = 'nombre'>" + p.nombre_p+ "</td><td class = 'nump'>" + p.precio + "</td><td class = 'botones'><input type = 'button' value = '+' onclick = 'incrementar(\"text"+i+"\");' class = 'botonfuncion'><input type = 'number' value = '0' id = 'text"+i+"'><input type = 'button' value = '-' onclick = 'disminuir(\"text"+i+"\")' class = 'botonfuncion'></td>";
 					document.getElementById("lista").appendChild(tr);
 				}}, errorCB);
 			}
 			
 			function incrementar(id) {
-				document.getElementById(id).value = document.getElementById(id).value++;
+				document.getElementById(id).value = document.getElementById(id).value + 1;
 			}
 			
 			function disminuir(id) {
