@@ -46,14 +46,14 @@
 		// Transaccion error
 		//
 		function errorCB(err) {
-			alert("Error processing SQL: "+err.code);
+			navigator.notification.alert("Error processing SQL: "+err.code);
 		}
 
 		
 		function queryDB(tx) {
 				tx.executeSql('SELECT * FROM productos', [], function (tx, results) {
 				//var len = results.rows.length;
-				alert("Consulta");
+				window.alert("Consulta");
 				/*for (var i=0; i<len; i++){
 				var p = results.rows.item(i);
 				window.alert("id_producto = " + p.id_producto);*/
