@@ -14,6 +14,10 @@
 				db.transaction(queryDB, errorCB);
 			}
 			
+			function errorCB(tx, err) {
+			navigator.notification.alert("Error processing SQL: "+err);
+			}
+			
 			function queryDB(tx) {
 				tx.executeSql('SELECT nombre_p, precio FROM PRODUCTOS', [], function (tx, results) {
 				var len = results.rows.length;
