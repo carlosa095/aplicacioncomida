@@ -58,14 +58,15 @@ ul.inicio li a {
 }
 
 input[type=number] {
-	width: 30px;
+	width: 50px;
 	height: 30px;
 	font-size: 20px;
 }
 
-input[type=button] {
+.botonfuncion {
 	width: 30px;
-	height: 30px;
+	height: 40px;
+	background-color: white;
 }
 
 .nombre {
@@ -80,6 +81,8 @@ input[type=button] {
 	width: 40%;
 }
 
+
+
 #lista {
 	list-style: none;
 	width: 100%;
@@ -91,7 +94,6 @@ input[type=button] {
 #lista tr {
 	height: 80px;
 	font-family: Arial;
-	text-align: center;
 	color: white;
 	font-size: 20px;
 }
