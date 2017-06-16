@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>Aplicación Comida</title>
+		<link type = "text/css" href = "estilo.css" rel = "stylesheet"/>
+		<script type="text/javascript" charset="utf-8" src="phonegap-1.2.0.js"></script>
+		<script type="text/javascript" charset="utf-8">
+
+		// Espera cargar
+		//
+		document.addEventListener("deviceready", onDeviceReady, false);
+
+		// Llena base 
+		//
+		function populateDB(tx) {
+			tx.executeSql('CREATE TABLE IF NOT EXISTS productos (id_producto unique, nombre_p, precio)');
+			tx.executeSql('CREATE TABLE IF NOT EXISTS ordenes (id_orden unique)');
+			tx.executeSql('CREATE TABLE IF NOT EXISTS detalle_ordenes (id_orden, id_producto, cantidad, precio)');
+			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (1, "Tacos de bisteck", "12")');
+			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (2, "Tacos de pastor", "12")');
+			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (3, "Tacos de alambre", "12")');
+			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (4, "Tacos de arrachera", "12")');
+			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (5, "Burritos de bisteck", "25")');
+			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (6, "Burritos de arrachera", "30")');
+			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (7, "Jugo", "12")');
+			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (8, "Refresco", "12")');
+			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (9, "Agua", "10")');
+		}
+
+		// Consulta
+		//
+		function queryDB(tx) {
+			tx.executeSql('SELECT * FROM productos', [], querySuccess, errorCB);
+		}
+
+		// Respuesta de consulta correcta
+		//
+		function querySuccess(tx, results) {
+			var len = results.rows.length;
+			navigator.notification.alert("DEMO table: " + len + " rows found.");
+			for (var i=0; i<len; i++){
+				navigator.notification.alert("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
+			}
+		}
+
+		// Transaccion error
+		//
+		function errorCB(err) {
+			console.log("Error processing SQL: "+err.code);
+		}
+
+		// Correcta
+		//
+		function successCB() {
+			var db = window.openDatabase("AplicacionComida", "1.0", "PhoneGap Demo", 200000);
+			db.transaction(queryDB, errorCB);
+		}
+
+		// PhoneGap is ready
+		//
+		function onDeviceReady() {
+			navigator.notification.alert("Hola");
+			var db = window.openDatabase("AplicacionComida", "1.0", "PhoneGap Demo", 200000);
+			db.transaction(populateDB, errorCB, successCB);
+		}
+
+    </script>
+    </head>
+    <body>
+        <script type="text/javascript" src="cordova.js"></script>
+		<div class = "contenedor1">
+			<div class = "filas1">
+				<div class = "contenedor2">
+					<h1>Comida</h1>
+				</div>
+			</div>
+			<div class = "filas2">
+				<div class = "contenedor3">
+					<ul>
+						<li><a href = "tomarorden.html">Tomar Orden</a></li>
+						<li><a href = "listaordenes.html">Ordenes</a></li>
+						<li><a href = "cobrar.html">Cobrar</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+    </body>
+</html>
