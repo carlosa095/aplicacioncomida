@@ -56,9 +56,8 @@
 				var len = results.rows.length;
 				for (var i=0; i<len; i++){
 				var p = results.rows.item(i);
-				window.alert("id_producto = " + p.id_producto);
-				}, errorCB);
-			}
+				navigator.notification.alert("id_producto = " + p.id_producto);
+				}}, errorCB);
 			}
 			
 			function obtenerDatos() {
