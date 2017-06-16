@@ -8,10 +8,13 @@
 		<script type="text/javascript" src="cordova.js"></script>
 		<script type="text/javascript" charset="utf-8">
 		
-			function cargar() {
+			window.onload = function() {
+				navigator.notification.alert("función");
 				var db = window.openDatabase("DEMO", "1.0", "PhoneGap Demo", 200000);
 				db.transaction(queryDB, errorCB);
 			}
+			
+			
 			
 			function queryDB(tx) {
 				tx.executeSql('SELECT nombre_p, precio FROM PRODUCTOS', [], function (tx, results) {
@@ -25,7 +28,7 @@
 			}
 		</script>
     </head>
-    <body onload = "cargar();">
+    <body>
         <script type="text/javascript" src="cordova.js"></script>
 		<div class = "contenedor1">
 			<div class = "filas1">
