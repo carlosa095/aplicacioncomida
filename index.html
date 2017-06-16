@@ -15,12 +15,9 @@
 		// Llena base 
 		//
 		function populateDB(tx) {
-			tx.executeSql('DROP TABLE productos;');
-			tx.executeSql('DROP TABLE ordenes;');
-			tx.executeSql('DROP TABLE detalle_ordenes;');
-			/*tx.executeSql('CREATE TABLE IF NOT EXISTS productos (id_producto unique, nombre_p, precio)');
-			tx.executeSql('CREATE TABLE IF NOT EXISTS ordenes (id_orden unique)');
-			tx.executeSql('CREATE TABLE IF NOT EXISTS detalle_ordenes (id_orden, id_producto, cantidad, precio)');
+			tx.executeSql('CREATE TABLE IF NOT EXISTS productos (id_producto INTEGER NOT NULL PRIMARY KEY, nombre_p TEXT NOT NULL, precio TEXT NOT NULL)');
+			tx.executeSql('CREATE TABLE IF NOT EXISTS ordenes (id_orden INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT)');
+			tx.executeSql('CREATE TABLE IF NOT EXISTS detalle_ordenes (id_orden INTEGER NOT NULL, id_producto INTEGER NOT NULL, cantidad INTEGER NOT NULL, precio TEXT NOT NULL)');
 			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (1, "Tacos de bisteck", "12")');
 			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (2, "Tacos de pastor", "12")');
 			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (3, "Tacos de alambre", "12")');
@@ -29,7 +26,7 @@
 			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (6, "Burritos de arrachera", "30")');
 			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (7, "Jugo", "12")');
 			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (8, "Refresco", "12")');
-			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (9, "Agua", "10")');*/
+			tx.executeSql('INSERT INTO productos (id_producto, nombre_p, precio) VALUES (9, "Agua", "10")');
 		}
 
 		// Consulta
