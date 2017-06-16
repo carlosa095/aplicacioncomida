@@ -15,6 +15,9 @@
 		// Llena base 
 		//
 		function populateDB(tx) {
+			tx.executeSql('DROP TABLE productos');
+			tx.executeSql('DROP TABLE ordenes');
+			tx.executeSql('DROP TABLE detalle_ordenes');
 			tx.executeSql('CREATE TABLE IF NOT EXISTS productos (id_producto unique, nombre_p, precio)');
 			tx.executeSql('CREATE TABLE IF NOT EXISTS ordenes (id_orden unique)');
 			tx.executeSql('CREATE TABLE IF NOT EXISTS detalle_ordenes (id_orden, id_producto, cantidad, precio)');
