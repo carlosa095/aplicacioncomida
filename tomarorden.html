@@ -6,6 +6,20 @@
 		<script type="text/javascript" charset="utf-8" src="phonegap-1.2.0.js"></script>
         <title>Aplicación Comida</title>
 		<link type = "text/css" href = "estilo.css" rel = "stylesheet"/>
+		<script type="text/javascript" charset="utf-8">
+			function queryDB(tx) {
+				tx.executeSql('SELECT * FROM productos', [], querySuccess, errorCB);
+			}
+			
+			function errorCB(err) {
+				navigator.notification.alert("Error processing SQL: "+err.code);
+			}
+			
+			function obtenerDatos() {
+				navigator.notification.alert("Entro a funcion");
+				db.transaction(queryDB, errorCB);
+			}
+		</script>
     </head>
     <body>
         <script type="text/javascript" src="cordova.js"></script>
@@ -18,7 +32,7 @@
 			<div class = "filas2">
 				<div class = "contenedor3">
 					<ul>
-						<li><a href = "">Opción2</a></li>
+						<li><a href = "" onclick = "obtenerDatos()">Opción2</a></li>
 						<li><a href = "">Opción2</a></li>
 						<li><a href = "">Opción2</a></li>
 					</ul>
