@@ -11,12 +11,20 @@
 				tx.executeSql('SELECT * FROM productos', [], querySuccess, errorCB);
 			}
 			
+			function querySuccess(tx, results) {
+				var len = results.rows.length;
+				for (var i=0; i<len; i++){
+				navigator.notification.alert("Row = " + i + " ID = " + results.rows.item(i).id_producto + " Data =  " + results.rows.item(i).nombre_p);
+				}
+			}
+			
 			function errorCB(err) {
 				navigator.notification.alert("Error processing SQL: "+err.code);
 			}
 			
 			function obtenerDatos() {
 				navigator.notification.alert("Entro a funcion");
+				var db = window.openDatabase("AplicacionComida", "1.0", "PhoneGap Demo", 200000);
 				db.transaction(queryDB, errorCB);
 			}
 		</script>
