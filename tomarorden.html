@@ -8,12 +8,12 @@
 		<link type = "text/css" href = "estilo.css" rel = "stylesheet"/>
 		<script type="text/javascript" charset="utf-8">
 			function queryDB(tx) {
-				tx.executeSql('SELECT id_producto FROM productos where id_producto = ?', [1], function (tx, results) {
+				tx.executeSql('SELECT * FROM productos where id_producto = ?', [1], function (tx, results) {
 				var len = results.rows.length;
 				navigator.notification.alert("Consulta");
 				for (var i=0; i<len; i++){
 				var p = results.rows.item(i);
-				navigator.notification.alert("id_producto = " + p.id_producto);
+				window.alert("id_producto = " + p.id_producto);
 				}
 			}, errorCB);
 				navigator.notification.alert("Entro a consulta");
@@ -28,6 +28,7 @@
 			function obtenerDatos() {
 				var db = window.openDatabase("AplicacionComida", "1.0", "PhoneGap Demo", 200000);
 				db.transaction(queryDB, errorCB);
+				window.alert("Funcion");
 			}
 		</script>
     </head>
