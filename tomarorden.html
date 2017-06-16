@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<script type="text/javascript" charset="utf-8" src="phonegap-1.2.0.js"></script>
+        <title>Aplicación Comida</title>
+		<link type = "text/css" href = "estilo.css" rel = "stylesheet"/>
+		<script type="text/javascript" charset="utf-8">
+			function queryDB(tx) {
+				tx.executeSql('SELECT * FROM productos where id_producto = 1', [], querySuccess, errorCB);
+			}
+			
+			function querySuccess(tx, results) {
+				var len = results.rows.length;
+				for (var i=0; i<len; i++){
+				var p = results.rows.item(i);
+				navigator.notification.alert("id_producto = " + p.id_producto + " nombre =  " + p.nombre_p);
+				}
+			}
+			
+			function errorCB(err) {
+				navigator.notification.alert("Error processing SQL: "+err.code);
+			}
+			
+			function obtenerDatos() {
+				navigator.notification.alert("Entro a funcion");
+				var db = window.openDatabase("AplicacionComida", "1.0", "PhoneGap Demo", 200000);
+				db.transaction(queryDB, errorCB);
+			}
+		</script>
+    </head>
+    <body>
+        <script type="text/javascript" src="cordova.js"></script>
+		<div class = "contenedor1">
+			<div class = "filas1">
+				<div class = "contenedor2">
+					<h1>Comida</h1>
+				</div>
+			</div>
+			<div class = "filas2">
+				<div class = "contenedor3">
+					<ul>
+						<li><a href = "" onclick = "obtenerDatos()">Opción2</a></li>
+						<li><a href = "">Opción2</a></li>
+						<li><a href = "">Opción2</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+    </body>
+</html>
