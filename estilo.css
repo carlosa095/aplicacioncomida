@@ -63,6 +63,11 @@ input[type=number] {
 	font-size: 20px;
 }
 
+input[type=button] {
+	width: 30px;
+	height: 30px;
+}
+
 #lista {
 	list-style: none;
 	width: 100%;
@@ -71,7 +76,7 @@ input[type=number] {
 	border-radius: 5px;
 }
 
-#lista li {
+#lista tr {
 	height: 80px;
 	font-family: Arial;
 	text-align: center;

@@ -23,22 +23,18 @@
 				var len = results.rows.length;
 				for (var i=0; i<len; i++){
 					var p = results.rows.item(i);
-					var li  = document.createElement('li');
-					//var num = document.createElement('input');
-					//num.setAttribute("type","number");
-					li.innerHTML = "" + p.nombre_p+ " " + p.precio + " <input type = 'button' id = 'incrementar"+i+"' value = '+' onclick = 'incrementar(text"+i+");'><input type = 'number' value = '0' id = 'text"+i+"'><input type = 'button' id = 'disminuir"+i+"' value = '-' onclick = 'disminuir(text"+i+")'></li>";
+					var tr  = document.createElement('tr');
+					tr.innerHTML = "<td>" + p.nombre_p+ "</td><td>" + p.precio + "</td><td><input type = 'button' id = 'incrementar"+i+"' value = '+' onclick = 'incrementar(\'text"+i+"\');'><input type = 'number' value = '0' id = 'text"+i+"'><input type = 'button' id = 'disminuir"+i+"' value = '-' onclick = 'disminuir(\'text"+i+"\')'></td>";
 					document.getElementById("lista").appendChild(li);
 				}}, errorCB);
 			}
 			
 			function incrementar(id) {
-				var numero = document.getElementById(id).value;
-				numero = numero + 1;
+				document.getElementById(id).value = document.getElementById(id).value+1;
 			}
 			
 			function disminuir(id) {
-				var numero = document.getElementById(id).value;
-				numero = numero - 1;
+				document.getElementById(id).value = document.getElementById(id).value-2;
 			}
 		</script>
     </head>
@@ -52,9 +48,9 @@
 			</div>
 			<div class = "filas2">
 				<div class = "contenedor3">
-					<ul id = "lista">
-						<li><input type = "button" onclick = "mensaje()" value = "Opcion"></li>
-					</ul>
+					<table id = "lista">
+						<tr><td><input type = "button" onclick = "mensaje()" value = "Opcion"></td><td></td><td></td></tr>
+					</table>
 				</div>
 			</div>
 		</div>
