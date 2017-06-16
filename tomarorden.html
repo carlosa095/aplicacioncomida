@@ -19,9 +19,10 @@
 				var len = results.rows.length;
 				for (var i=0; i<len; i++){
 					var p = results.rows.item(i);
-					var li  = document.createElement('li');
-					li.innerHTML = "" + p.nombre_p+ " " + p.precio + "<input type = 'number'></li>";
-					document.getElementById("lista").appendChild(li);
+					navigator.notification.alert(""+p.nombre_p);
+					//var li  = document.createElement('li');
+					//li.innerHTML = "" + p.nombre_p+ " " + p.precio + "<input type = 'number'></li>";
+					//document.getElementById("lista").appendChild(li);
 				}}, errorCB);
 			}
 		</script>
