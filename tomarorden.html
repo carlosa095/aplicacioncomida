@@ -30,7 +30,9 @@
 			}
 			
 			function incrementar(id) {
-				document.getElementById(id).value = document.getElementById(id).value + 1;
+				var numero = document.getElementById(id).value;
+				var numerosuma = numero + 1;
+				document.getElementById(id).value = numerosuma;
 			}
 			
 			function disminuir(id) {
