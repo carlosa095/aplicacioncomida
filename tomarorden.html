@@ -25,7 +25,7 @@
 					var p = results.rows.item(i);
 					var tr  = document.createElement('tr');
 					tr.innerHTML = "<td>" + p.nombre_p+ "</td><td>" + p.precio + "</td><td><input type = 'button' id = 'incrementar"+i+"' value = '+' onclick = 'incrementar(\'text"+i+"\');'><input type = 'number' value = '0' id = 'text"+i+"'><input type = 'button' id = 'disminuir"+i+"' value = '-' onclick = 'disminuir(\'text"+i+"\')'></td>";
-					document.getElementById("lista").appendChild(li);
+					document.getElementById("lista").appendChild(tr);
 				}}, errorCB);
 			}
 			
