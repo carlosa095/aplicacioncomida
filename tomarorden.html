@@ -71,23 +71,10 @@
 				}
 			}
 			
-			function insertarOrden(tx) {
+			function insertarProductosOrden(tx) {
 				tx.executeSql('SELECT MAX(id_orden) AS id_orden FROM ORDENES', [], function (tx, results) {
 					var len = results.rows.length;
-					for (var i = 0; i < len; i++) {
-						var p = results.rows.item(i);
-						if(p.id_orden == null){
-							tx.executeSql('INSERT INTO ORDENES (id_orden) VALUES (0)');
-						}
-						else {
-							var num = p.id_orden + 1;
-							tx.executeSql('INSERT INTO ORDENES (id_orden) VALUES ('+num+')');
-						}
-					}
-				},errorCB);
-				tx.executeSql('SELECT MAX(id_orden) AS id_orden FROM ORDENES', [], function (tx, results) {
-					var len = results.rows.length;
-					var cantidades = document.getElementsByTag("input[type=number]");
+					//var cantidades = document.getElementsByTag("input[type=number]");
 					for (var i = 0; i < len; i++) {
 						var p = results.rows.item(i);
 						navigator.notification.alert(""+p.id_orden);
@@ -102,7 +89,23 @@
 						},errorCB);*/
 					}
 				},errorCB);
-				
+			}
+			
+			function insertarOrden(tx) {
+				tx.executeSql('SELECT MAX(id_orden) AS id_orden FROM ORDENES', [], function (tx, results) {
+					var len = results.rows.length;
+					for (var i = 0; i < len; i++) {
+						var p = results.rows.item(i);
+						if(p.id_orden == null){
+							tx.executeSql('INSERT INTO ORDENES (id_orden) VALUES (0)');
+						}
+						else {
+							var num = p.id_orden + 1;
+							tx.executeSql('INSERT INTO ORDENES (id_orden) VALUES ('+num+')');
+						}
+					}
+				},errorCB);
+				insertarProductosOrden();
 			}
 			
 			function successCB() {
