@@ -44,13 +44,13 @@
 			var len = results.rows.length;
 			for (var i=0; i<len; i++){
 			var p = results.rows.item(i);
-			navigator.notification.alert(p.nombre_p);
-				/*tx.executeSql('SELECT id_producto, cantidad FROM DETALLE_ORDEN WHERE id_orden = ? AND id_producto = ?', [id_orden, i+1], function (tx, results2) {
+				tx.executeSql('SELECT id_producto, cantidad FROM DETALLE_ORDEN WHERE id_orden = ? AND id_producto = ?', [id_orden, i+1], function (tx, results2) {
 				var p2 = results2.rows.item(i);
-					var tr = document.createElement("tr");
+				navigator.notification.alert(p2.id_producto + " " + p2.cantidad);
+					/*var tr = document.createElement("tr");
 					tr.innerHTML = "<td class = 'nombre'>"+p.nombre_p+"</td><td class = 'nump'>"+p.precio+"</td><td class = 'botones'><input type = 'button' value = '+' onclick = 'incrementar(\"text"+i+"\")' class = 'botonfuncion'><input type = 'button' value = '+5' onclick = 'incrementarOrden(\"text"+i+"\")' class = 'botonfuncion'><input type = 'number' id = 'text"+i+"' value = '"+p2.cantidad+"' disabled><input type = 'button' value = '-' onclick = 'disminuir(\"text"+i+"\")' class = 'botonfuncion'></td>";
-					lista.appendChild(tr);
-				}, errorCB);*/
+					lista.appendChild(tr);*/
+				}, errorCB);
 			}}, errorCB);
 		}
 		
