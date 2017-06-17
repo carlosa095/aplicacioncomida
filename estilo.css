@@ -70,7 +70,7 @@ input[type=number] {
 }
 
 .botonfuncion {
-	width: 35%;
+	width: 20%;
 	height: 100%;
 	background-color: white;
 	font-size: 20px;
@@ -109,7 +109,7 @@ input[type=number] {
 	background-color: #894200;
 	padding: 0px;
 	border-radius: 5px;
-	margin: -5px;
+	margin: 0px 0px 5px 0px;
 }
 
 #lista tr {
