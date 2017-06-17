@@ -40,7 +40,14 @@
 				for (var i=0; i<len; i++){
 					var p = results.rows.item(i);
 					var tr  = document.createElement('tr');
-					tr.innerHTML = "<td class = 'nombre'>" + p.nombre_p+ "</td><td class = 'nump'>$" + p.precio + "</td><td class = 'botones'><input type = 'button' value = '+' onclick = 'incrementar(\"text"+i+"\");' class = 'botonfuncion'><input type = 'button' value = '+5' onclick = 'incrementarOrden(\"text"+i+"\")'><input type = 'number' value = '0' id = 'text"+i+"' disabled><input type = 'button' value = '-' onclick = 'disminuir(\"text"+i+"\")' class = 'botonfuncion'></td>";
+					var palabra = p.nombre_p.split(" ");
+					if(palabra[0] == "Tacos")
+					{
+						tr.innerHTML = "<td class = 'nombre'>" + p.nombre_p+ "</td><td class = 'nump'>$" + p.precio + "</td><td class = 'botones'><input type = 'button' value = '+' onclick = 'incrementar(\"text"+i+"\");' class = 'botonfuncion'><input type = 'button' value = '+5' onclick = 'incrementarOrden(\"text"+i+"\")' class = 'botonfuncion'><input type = 'number' value = '0' id = 'text"+i+"' disabled><input type = 'button' value = '-' onclick = 'disminuir(\"text"+i+"\")' class = 'botonfuncion'></td>";
+					}
+					else {
+						tr.innerHTML = "<td class = 'nombre'>" + p.nombre_p+ "</td><td class = 'nump'>$" + p.precio + "</td><td class = 'botones'><input type = 'button' value = '+' onclick = 'incrementar(\"text"+i+"\");' class = 'botonfuncion'><input type = 'number' value = '0' id = 'text"+i+"' disabled><input type = 'button' value = '-' onclick = 'disminuir(\"text"+i+"\")' class = 'botonfuncion'></td>";
+					}
 					document.getElementById("lista").appendChild(tr);
 				}}, errorCB);
 			}
