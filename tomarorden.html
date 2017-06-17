@@ -35,12 +35,12 @@
 			}
 			
 			function queryDB(tx) {
-				var select = document.getElementById("mesas");
-				for(var i = 0; i < 24; i++) {
+				var lista = document.getElementById("mesas");
+				for(var j = 1; j < 24; j++) {
 					var options = createElement("option");
-					options.value = i;
-					options.innerHTML = i;
-					select.appendChild(options);
+					options.value = ""+j;
+					options.innerHTML = ""+j;
+					lista.appendChild(options);
 				}
 				tx.executeSql('SELECT nombre_p, precio FROM PRODUCTOS', [], function (tx, results) {
 				var len = results.rows.length;
