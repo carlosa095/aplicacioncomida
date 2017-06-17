@@ -52,7 +52,7 @@
 			}
 			
 			function insertarOrden(tx) {
-				tx.executeSql('SELECT MAX(id_orden) FROM ORDENES', [], function (tx, results) {
+				tx.executeSql('SELECT MAX(id_orden) AS id_orden FROM ORDENES', [], function (tx, results) {
 					var len = results.rows.length;
 					for (var i = 0; i < len; i++) {
 						var p = results.rows.item(i);
