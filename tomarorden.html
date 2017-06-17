@@ -57,12 +57,13 @@
 					for (var i = 0; i < len; i++) {
 						var p = results.rows.item(i);
 						if(p.id_orden == null){
-							tx.executeSql('INSERT INTO ORDENES (id_orden) VALUES (1)');
+							//tx.executeSql('INSERT INTO ORDENES (id_orden) VALUES (1)');
+							navigator.notification.alert("Se inserto");
 						}
 						else {
-							var num = p.id_orden + 1;
-							navigator.notification.alert(num);
-							tx.executeSql('INSERT INTO ORDENES (id_orden) VALUES ('+p.id_orden+')');
+							//var num = p.id_orden + 1;
+							navigator.notification.alert("No se inserto");
+							//tx.executeSql('INSERT INTO ORDENES (id_orden) VALUES ('+p.id_orden+')');
 						}
 					}
 				},errorCB);
