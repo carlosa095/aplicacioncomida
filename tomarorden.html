@@ -39,7 +39,7 @@
 				for(var j = 1; j < 24; j++) {
 					var options = createElement("option");
 					options.value = ""+j;
-					options.innerHTML = ""+j;
+					options.text = ""+j;
 					lista.appendChild(options);
 				}
 				tx.executeSql('SELECT nombre_p, precio FROM PRODUCTOS', [], function (tx, results) {
@@ -133,6 +133,7 @@
 			<div class = "filas2">
 				<div class = "contenedor3">
 					<select id = "mesas">
+						
 					</select>
 					<table id = "lista">
 					</table>
