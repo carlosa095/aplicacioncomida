@@ -52,19 +52,21 @@
 			}
 			
 			function insertarOrden(tx) {
-				tx.executeSql('INSERT INTO ORDENES (id_orden) VALUES ()');
 				tx.executeSql('SELECT MAX(id_orden) FROM ORDENES', [], function (tx, results) {
 					var len = results.rows.length;
 					for (var i = 0; i < len; i++) {
 						var p = results.rows.item(i);
 						if(p.id_orden == null){
-							navigator.notification.alert("No hay datos");
+							tx.executeSql('INSERT INTO ORDENES (id_orden) VALUES (1)');
 						}
 						else {
-							navigator.notification.alert(p.id_orden);
+							var num = p.id_orden + 1;
+							navigator.notification.alert(num);
+							tx.executeSql('INSERT INTO ORDENES (id_orden) VALUES (?)',[num]);
 						}
 					}
 				},errorCB);
+				
 			}
 			
 			function successCB() {
