@@ -87,12 +87,11 @@
 						}
 						else {
 							var num = p.id_orden + 1;
-							id_orden = num;
 							tx.executeSql('INSERT INTO ORDENES (id_orden) VALUES ('+num+')');
+							navigator.notification.alert(""+num);
 						}
 					}
 				},errorCB);
-				navigator.notification.alert(""+id_orden);
 				/*tx.executeSql('SELECT id_producto, precio FROM PRODUCTOS', [], function (tx, results) {
 					var len = results.rows.length;
 					for (var i = 0; i < len; i++) {
