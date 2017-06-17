@@ -72,14 +72,13 @@
 			}
 			
 			function insertarProductosOrden(tx) {
-				navigator.notification.alert("aaaa");
-				/*tx.executeSql('SELECT MAX(id_orden) AS id_orden FROM ORDENES', [], function (tx, results) {
+				tx.executeSql('SELECT MAX(id_orden) AS id_orden FROM ORDENES', [], function (tx, results) {
 					var len = results.rows.length;
 					//var cantidades = document.getElementsByTag("input[type=number]");
 					for (var i = 0; i < len; i++) {
 						var p = results.rows.item(i);
 						navigator.notification.alert(""+p.id_orden);
-						tx.executeSql('SELECT id_producto, precio FROM PRODUCTOS', [], function (tx, results2) {
+						/*tx.executeSql('SELECT id_producto, precio FROM PRODUCTOS', [], function (tx, results2) {
 							var len2 = results2.rows.length;
 							for (var i = 0; i < len2; i++) {
 								var p2 = results2.rows.item(i);
@@ -87,9 +86,9 @@
 								navigator.notification.alert(p.id_orden + " producto " + p2.id_producto + " cantidad " + cantidades[i].value + " precio " + p2.precio);
 								//window.location = "index.html";
 							}
-						},errorCB);
+						},errorCB);*/
 					}
-				},errorCB);*/
+				},errorCB);
 			}
 			
 			function insertarOrden(tx) {
