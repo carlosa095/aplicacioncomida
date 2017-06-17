@@ -8,9 +8,11 @@
 		<script type="text/javascript" src="cordova.js"></script>
 		<script type="text/javascript" charset="utf-8">
 		
-			document.addEventListener("bodyload", onBodyLoad, false);
+			function onLoad() {
+				document.addEventListener("deviceready", onDeviceReady, false);
+			}
 			
-			function onBodyLoad() {
+			function onDeviceReady() {
 				navigator.notification.alert("función");
 				var db = window.openDatabase("DEMO", "1.0", "PhoneGap Demo", 200000);
 				db.transaction(queryDB, errorCB);
@@ -51,7 +53,7 @@
 			}
 		</script>
     </head>
-    <body onload = "mensaje()">
+    <body onload = "onLoad()">
         <script type="text/javascript" src="cordova.js"></script>
 		<div class = "contenedor1">
 			<div class = "filas1">
