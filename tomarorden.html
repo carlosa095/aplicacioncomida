@@ -19,7 +19,6 @@
 			}
 			
 			function mensaje() {
-				navigator.notification.alert("función");
 				var db = window.openDatabase("DEMO", "1.0", "PhoneGap Demo", 200000);
 				db.transaction(queryDB, errorCB);
 			}
@@ -34,7 +33,7 @@
 				for (var i=0; i<len; i++){
 					var p = results.rows.item(i);
 					var tr  = document.createElement('tr');
-					tr.innerHTML = "<td class = 'nombre'>" + p.nombre_p+ "</td><td class = 'nump'>" + p.precio + "</td><td class = 'botones'><input type = 'button' value = '+' onclick = 'incrementar(\"text"+i+"\");' class = 'botonfuncion'><input type = 'number' value = '0' id = 'text"+i+"' disabled><input type = 'button' value = '-' onclick = 'disminuir(\"text"+i+"\")' class = 'botonfuncion'></td>";
+					tr.innerHTML = "<td class = 'nombre'>" + p.nombre_p+ "</td><td class = 'nump'>$" + p.precio + "</td><td class = 'botones'><input type = 'button' value = '+' onclick = 'incrementar(\"text"+i+"\");' class = 'botonfuncion'><input type = 'number' value = '0' id = 'text"+i+"' disabled><input type = 'button' value = '-' onclick = 'disminuir(\"text"+i+"\")' class = 'botonfuncion'></td>";
 					document.getElementById("lista").appendChild(tr);
 				}}, errorCB);
 			}
@@ -51,6 +50,31 @@
 				document.getElementById(id).value = document.getElementById(id).value-1;
 				}
 			}
+			
+			function insertarOrden(tx) {
+				tx.executeSql('SELECT MAX(id_orden) FROM ORDENES', [], function (tx, results) {
+					var len = results.rows.length;
+					for (var i = 0; i < len; i++) {
+						var p = results.rows.item(i);
+						if(p.id_orden == null){
+							navigator.notification.alert("No hay datos");
+						}
+						else {
+							navigator.notification.alert('Hay datos');
+						}
+					}
+				},errorCB);
+				//tx.executeSql('INSERT INTO ORDENES (id_orden) VALUES ()');
+			}
+			
+			function successCB() {
+				
+			}
+			
+			function guardar() {
+				var db = window.openDatabase("DEMO", "1.0", "PhoneGap Demo", 200000);
+				db.transaction(insertarOrden, errorCB, successCB);
+			}
 		</script>
     </head>
     <body onload = "onLoad()">
@@ -64,8 +88,8 @@
 			<div class = "filas2">
 				<div class = "contenedor3">
 					<table id = "lista">
-						<tr><td><input type = "button" onclick = "mensaje()" value = "Opcion"></td><td></td><td></td></tr>
 					</table>
+					<input type = "button" value = "Guardar" onclick = "guardar()">
 				</div>
 			</div>
 		</div>
