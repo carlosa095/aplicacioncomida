@@ -35,6 +35,13 @@
 			}
 			
 			function queryDB(tx) {
+				var select = document.getElementById("mesas");
+				for(var i = 0; i < 24; i++) {
+					var options = createElement("option");
+					options.value = i;
+					options.innerHTML = i;
+					select.appendChild(options);
+				}
 				tx.executeSql('SELECT nombre_p, precio FROM PRODUCTOS', [], function (tx, results) {
 				var len = results.rows.length;
 				for (var i=0; i<len; i++){
@@ -77,24 +84,26 @@
 			
 			function insertarOrden(tx) {
 				var cantidades = document.querySelectorAll("input[type='number']");
+				var lista = document.getElementById("mesas");
+				var mesa = lista.options[lista.selectedIndex].value;
 				var id_orden = 0;
 				tx.executeSql('SELECT MAX(id_orden) AS id_orden FROM ORDENES', [], function (tx, results) {
 					var len = results.rows.length;
 					for (var i = 0; i < len; i++) {
 						var p = results.rows.item(i);
 						if(p.id_orden == null){
-							tx.executeSql('INSERT INTO ORDENES (id_orden) VALUES (0)');
+							tx.executeSql('INSERT INTO ORDENES (id_orden, pagado, servido) VALUES (0, '+mesa+', "No", "No")');
 						}
 						else {
 							var num = p.id_orden + 1;
-							tx.executeSql('INSERT INTO ORDENES (id_orden) VALUES ('+num+')');
+							tx.executeSql('INSERT INTO ORDENES (id_orden, pagado, servido) VALUES ('+num+', '+mesa+', "No", "No")');
 							tx.executeSql('SELECT id_producto, precio FROM PRODUCTOS', [], function (tx, results2) {
 								var len2 = results2.rows.length;
 								for (var i = 0; i < len2; i++) {
 									var p2 = results2.rows.item(i);
 									tx.executeSql('INSERT INTO DETALLE_ORDEN (id_orden, id_producto, cantidad, precio) VALUES ('+p.id_orden+', '+p2.id_producto+', '+cantidades[i].value+', '+p2.precio+')');
 									navigator.notification.alert(num + " producto " + p2.id_producto + " cantidad " + cantidades[i].value + " precio " + p2.precio);
-									//window.location = "index.html";
+									window.location = "index.html";
 								}
 							},errorCB);
 						}
@@ -123,6 +132,8 @@
 			</div>
 			<div class = "filas2">
 				<div class = "contenedor3">
+					<select id = "mesas">
+					</select>
 					<table id = "lista">
 					</table>
 					<input type = "button" value = "Guardar" onclick = "guardar()" class = "boton">
