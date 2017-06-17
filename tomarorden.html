@@ -92,7 +92,7 @@
 								var len2 = results2.rows.length;
 								for (var i = 0; i < len2; i++) {
 									var p2 = results2.rows.item(i);
-									//tx.executeSql('INSERT INTO DETALLE_ORDEN (id_orden, id_producto, cantidad, precio) VALUES ('+p.id_orden+', '+p2.id_producto+', '+cantidades[i].value+', '+p2.precio+')');
+									tx.executeSql('INSERT INTO DETALLE_ORDEN (id_orden, id_producto, cantidad, precio) VALUES ('+p.id_orden+', '+p2.id_producto+', '+cantidades[i].value+', '+p2.precio+')');
 									navigator.notification.alert(num + " producto " + p2.id_producto + " cantidad " + cantidades[i].value + " precio " + p2.precio);
 									//window.location = "index.html";
 								}
