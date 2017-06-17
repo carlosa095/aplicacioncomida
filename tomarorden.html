@@ -76,7 +76,7 @@
 			}
 			
 			function insertarOrden(tx) {
-				var cantidades = document.getElementsByTagName("input[type=number]");
+				var cantidades = document.querySelectorAll("input[type='number']");
 				var id_orden = 0;
 				tx.executeSql('SELECT MAX(id_orden) AS id_orden FROM ORDENES', [], function (tx, results) {
 					var len = results.rows.length;
