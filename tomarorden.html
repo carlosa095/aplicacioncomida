@@ -35,13 +35,25 @@
 			}
 			
 			function queryDB(tx) {
+				tx.executeSql('SELECT mesa FROM ORDENES WHERE pagado = "No" AND servido = "No"', [], function (tx, results) {
 				var lista = document.getElementById("mesas");
+				var len = results.rows.length;
 				for(var j = 1; j < 24; j++) {
-					var options = document.createElement("option");
-					options.value = ""+j;
-					options.text = ""+j;
-					lista.appendChild(options);
+					for (var i=0; i<len; i++){
+						var p = results.rows.item(i);
+						if(p.mesa == j)
+						{
+							
+						}
+						else {
+						var options = document.createElement("option");
+						options.value = ""+j;
+						options.text = ""+j;
+						lista.appendChild(options);
+						}
+					}
 				}
+				}, errorCB);
 				tx.executeSql('SELECT nombre_p, precio FROM PRODUCTOS', [], function (tx, results) {
 				var len = results.rows.length;
 				for (var i=0; i<len; i++){
@@ -132,10 +144,10 @@
 			</div>
 			<div class = "filas2">
 				<div class = "contenedor3">
-					<p>Mesa: </p>
+					<p>Mesa: 
 					<select id = "mesas">
 						
-					</select>
+					</select></p>
 					<table id = "lista">
 					</table>
 					<input type = "button" value = "Guardar" onclick = "guardar()" class = "boton">

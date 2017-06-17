@@ -109,7 +109,8 @@ input[type=number] {
 	background-color: #894200;
 	padding: 0px;
 	border-radius: 5px;
-	margin: 0px -5px 5px -5px;
+	margin-left: -5px;
+	margin-right: -5px;
 }
 
 #lista tr {
@@ -118,4 +119,10 @@ input[type=number] {
 	color: white;
 	font-size: 20px;
 	border:5px solid white;
+}
+
+#lista tr a {
+	color: white;
+	text-decoration: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
