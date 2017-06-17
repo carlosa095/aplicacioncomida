@@ -24,9 +24,9 @@
 		// Populate the database 
 		//
 		function populateDB(tx) {
-			 tx.executeSql('DROP TABLE IF EXISTS PRODUCTOS');
-			 tx.executeSql('DROP TABLE IF EXISTS ORDENES');
-			 tx.executeSql('DROP TABLE IF EXISTS DETALLE_ORDEN');
+			 //tx.executeSql('DROP TABLE IF EXISTS PRODUCTOS');
+			 //tx.executeSql('DROP TABLE IF EXISTS ORDENES');
+			 //tx.executeSql('DROP TABLE IF EXISTS DETALLE_ORDEN');
 			 tx.executeSql('CREATE TABLE IF NOT EXISTS PRODUCTOS (id_producto INT PRIMARY KEY, nombre_p TEXT NOT NULL, precio TEXT NOT NULL)');
 			 tx.executeSql('CREATE TABLE IF NOT EXISTS ORDENES (id_orden INT PRIMARY KEY, mesa INT NOT NULL, pagado TEXT NOT NULL, servido TEXT NOT NULL)');
 			 tx.executeSql('CREATE TABLE IF NOT EXISTS DETALLE_ORDEN (id_orden INT, id_producto INT, cantidad INT NOT NULL, precio TEXT NOT NULL, FOREIGN KEY (id_producto) REFERENCES PRODUCTOS (id_producto), FOREIGN KEY (id_orden) REFERENCES ORDENES(id_orden))');
@@ -89,7 +89,7 @@
 				<div class = "contenedor3">
 					<ul class = "inicio">
 						<li><a href = "tomarorden.html">Tomar Orden</a></li>
-						<li><a href = "" onclick = "obtenerDatos()">Ordenes</a></li>
+						<li><a href = "ordenes.html">Ordenes</a></li>
 						<li><a href = "" onclick = "insertar()">Total</a></li>
 					</ul>
 				</div>
