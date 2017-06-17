@@ -38,20 +38,22 @@
 				tx.executeSql('SELECT mesa FROM ORDENES WHERE pagado = "No" AND servido = "No"', [], function (tx, results) {
 				var lista = document.getElementById("mesas");
 				var len = results.rows.length;
-				for(var j = 1; j < 24; j++) {
-					for (var i=0; i<len; i++){
-						var p = results.rows.item(i);
-						if(p.mesa == j)
-						{
-							
-						}
-						else {
+				var arreglo = [];
+				for (var i=0; i<len; i++){
+					var p = results.rows.item(i);
+					arreglo[i] = p.mesa;
+				}
+				var arreglo2 = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
+				for(var j = 0; j < arreglo.length; j++) {
+					var a = arreglo2.indexOf(arreglo[j]);
+					arreglo2.splice(a,1);
+					for (var b = 0; b < arreglo2.length; b++) {
 						var options = document.createElement("option");
 						options.value = ""+j;
 						options.text = ""+j;
 						lista.appendChild(options);
-						}
 					}
+					
 				}
 				}, errorCB);
 				tx.executeSql('SELECT nombre_p, precio FROM PRODUCTOS', [], function (tx, results) {
