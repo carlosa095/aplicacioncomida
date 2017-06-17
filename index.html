@@ -26,7 +26,7 @@
 		function populateDB(tx) {
 			 tx.executeSql('DROP TABLE IF EXISTS PRODUCTOS');
 			 tx.executeSql('DROP TABLE IF EXISTS ORDENES');
-			 tx.executeSql('DROP TABLE IF EXISTS PRODUCTOS');
+			 tx.executeSql('DROP TABLE IF EXISTS DETALLE_ORDEN');
 			 tx.executeSql('CREATE TABLE IF NOT EXISTS PRODUCTOS (id_producto INT PRIMARY KEY, nombre_p TEXT NOT NULL, precio REAL NOT NULL)');
 			 tx.executeSql('CREATE TABLE IF NOT EXISTS ORDENES (id_orden INT PRIMARY KEY AUTOINCREMENT)');
 			 tx.executeSql('CREATE TABLE IF NOT EXISTS DETALLE_ORDEN (id_orden INT, id_producto INT, cantidad INT NOT NULL, precio REAL NOT NULL, FOREIGN KEY (id_producto) REFERENCES PRODUCTOS (id_producto), FOREIGN KEY (id_orden) REFERENCES ORDENES(id_orden))');
