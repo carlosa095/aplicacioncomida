@@ -64,9 +64,9 @@
 				productos.appendChild(tr);
 				totalproducto = (parseInt(p.cantidad)) * (parseInt(p.precio));
 				total = parseInt(total) + totalproducto;
+				navigator.notification.alert(total);
 				}
 				}}, errorCB);
-				navigator.notification.alert(total);
 				//productos.appendChild(document.createElement("tr").innerHTML = "<td class = 'producto'>Total</td><td class = 'precio'></td><td class = 'cantidad'>"+total+"</td>");
 			}
 			
