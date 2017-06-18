@@ -58,11 +58,12 @@
 				var p = results.rows.item(i);
 				if(p.cantidad > 0)
 				{
-				var tr = document.createElement("tr");
+				/*var tr = document.createElement("tr");
 				tr.innerHTML = "<td class = 'nombre'>"+p.nombre_p+"</td><td class = 'nump'>"+p.precio+"</td><td class = 'botones'>"+p.cantidad+"</td>";
 				productos.appendChild(tr);
 				totalproducto = parseFloat(p.cantidad) * parseFloat(p.precio);
-				total = total + totalproducto;
+				total = total + totalproducto;*/
+				navigator.notification.alert("guardar1");
 				}
 				}}, errorCB);
 				productos.appendChild(document.createElement("tr").innerHTML = "<td class = 'botones'>Total: "+total+"</td>");
