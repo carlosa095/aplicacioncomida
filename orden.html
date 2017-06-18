@@ -39,6 +39,7 @@
 
 		function queryDB(tx) {
 			var id_orden = getParameterByName('id_orden');
+			navigator.notification.alert(id_orden);
 			var lista = document.getElementById("lista");
 			tx.executeSql('SELECT DETALLE_ORDEN.id_producto, PRODUCTOS.nombre_p, PRODUCTOS.precio, DETALLE_ORDEN.cantidad FROM DETALLE_ORDEN INNER JOIN PRODUCTOS ON DETALLE_ORDEN.id_producto = PRODUCTOS.id_producto WHERE id_orden = '+id_orden+'', [], function (tx, results) {
 				for(var i = 0; i < results.rows.length; i++)
