@@ -46,7 +46,7 @@
 					var p = results.rows.item(i);
 					navigator.notification.alert(p.id_producto + " " + p.cantidad);
 						var tr = document.createElement("tr");
-						tr.innerHTML = "<td class = 'nombre'>"+p.nombre_p+"</td><td class = 'nump'>"+p.precio+"</td><td class = 'botones'><input type = 'button' value = '+' onclick = 'incrementar(\"text"+i+"\")' class = 'botonfuncion'><input type = 'button' value = '+5' onclick = 'incrementarOrden(\"text"+i+"\")' class = 'botonfuncion'><input type = 'number' id = 'text"+i+"' value = '"+p.cantidad+"' disabled><input type = 'button' value = '-' onclick = 'disminuir(\"text"+i+"\")' class = 'botonfuncion'></td>";
+						tr.innerHTML = "<td class = 'nombre'>"+p.nombre_p+"</td><td class = 'nump'>$"+p.precio+"</td><td class = 'botones'><input type = 'button' value = '+' onclick = 'incrementar(\"text"+i+"\")' class = 'botonfuncion'><input type = 'button' value = '+5' onclick = 'incrementarOrden(\"text"+i+"\")' class = 'botonfuncion'><input type = 'number' id = 'text"+i+"' value = '"+p.cantidad+"' disabled><input type = 'button' value = '-' onclick = 'disminuir(\"text"+i+"\")' class = 'botonfuncion'></td>";
 						lista.appendChild(tr);
 				}
 			}, errorCB);

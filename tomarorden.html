@@ -105,7 +105,9 @@
 					for (var i = 0; i < len; i++) {
 						var p = results.rows.item(i);
 						if(p.id_orden == null){
-							tx.executeSql('INSERT INTO ORDENES (id_orden, mesa, pagado, servido) VALUES (0, '+mesa+', "No", "No")');
+							tx.executeSql('INSERT INTO ORDENES (id_orden, mesa, pagado, servido) VALUES (1, '+mesa+', "No", "No")');
+							navigator.notification.alert("1");
+							window.location = "index.html";
 						}
 						else {
 							var num = p.id_orden + 1;
@@ -115,7 +117,7 @@
 								for (var i = 0; i < len2; i++) {
 									var p2 = results2.rows.item(i);
 									tx.executeSql('INSERT INTO DETALLE_ORDEN (id_orden, id_producto, cantidad, precio) VALUES ('+p.id_orden+', '+p2.id_producto+', '+cantidades[i].value+', '+p2.precio+')');
-									navigator.notification.alert(num + " producto " + p2.id_producto + " cantidad " + cantidades[i].value + " precio " + p2.precio);
+									navigator.notification.alert(num);
 									window.location = "index.html";
 								}
 							},errorCB);
