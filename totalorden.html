@@ -66,7 +66,8 @@
 				total = total + totalproducto;
 				}
 				}}, errorCB);
-				productos.appendChild(document.createElement("tr").innerHTML = "<td class = 'nombre'></td><td class = 'nump'></td><td class = 'botones'>Total: "+total+"</td>");
+				navigator.notification.alert(total);
+				//productos.appendChild(document.createElement("tr").innerHTML = "<td class = 'producto'>Total</td><td class = 'precio'></td><td class = 'cantidad'>"+total+"</td>");
 			}
 			
 			function getParameterByName(name) {
