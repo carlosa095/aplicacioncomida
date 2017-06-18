@@ -66,7 +66,8 @@
 				total = parseInt(total) + totalproducto;
 				}
 				}
-				productos.appendChild(document.createElement("tr").innerHTML = "<td class = 'producto'>Total</td><td class = 'precio'></td><td class = 'cantidad'>"+total+"</td>");
+				var tr2 = document.createElement("tr").innerHTML = "<td class = 'producto'>Total</td><td class = 'precio'></td><td class = 'cantidad'>"+total+"</td>";
+				productos.appendChild(tr2);
 				}, errorCB);
 			}
 			
