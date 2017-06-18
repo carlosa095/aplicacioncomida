@@ -62,11 +62,11 @@
 				var tr = document.createElement("tr");
 				tr.innerHTML = "<td class = 'producto'>"+p.nombre_p+"</td><td class = 'precio'>$"+p.precio+"</td><td class = 'cantidad'>"+p.cantidad+"</td>";
 				productos.appendChild(tr);
-				totalproducto = (parseFloat(p.cantidad)) * (parseFloat(p.precio));
+				totalproducto = (parseInt(p.cantidad)) * (parseInt(p.precio));
 				total = total + totalproducto;
 				}
 				}}, errorCB);
-				navigator.notification.alert(totalproducto);
+				navigator.notification.alert(total);
 				//productos.appendChild(document.createElement("tr").innerHTML = "<td class = 'producto'>Total</td><td class = 'precio'></td><td class = 'cantidad'>"+total+"</td>");
 			}
 			

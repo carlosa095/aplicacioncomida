@@ -102,15 +102,15 @@ input[type=number] {
 }
 
 .producto {
-	width: 80%;
+	width: 60%;
 }
 
 .precio {
-	width: 10%;
+	width: 20%;
 }
 
 .cantidad {
-	width: 10%;
+	width: 20%;
 }
 
 #lista {
