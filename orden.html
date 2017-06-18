@@ -37,8 +37,10 @@
 			
 		}
 
+		var id_orden = 0;
+		
 		function queryDB(tx) {
-			var id_orden = getParameterByName('id_orden');
+			id_orden = getParameterByName('id_orden');
 			navigator.notification.alert(id_orden);
 			var lista = document.getElementById("lista");
 			tx.executeSql('SELECT DETALLE_ORDEN.id_producto, PRODUCTOS.nombre_p, PRODUCTOS.precio, DETALLE_ORDEN.cantidad FROM DETALLE_ORDEN INNER JOIN PRODUCTOS ON DETALLE_ORDEN.id_producto = PRODUCTOS.id_producto WHERE id_orden = '+id_orden+'', [], function (tx, results) {
@@ -60,6 +62,45 @@
 			return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 		}
 		
+		function guardarOrden(tx) {
+			var lista = document.querySelectorAll("input[type='number']");
+			tx.executeSql('SELECT DETALLE_ORDEN.id_producto, PRODUCTOS.nombre_p, PRODUCTOS.precio, DETALLE_ORDEN.cantidad FROM DETALLE_ORDEN INNER JOIN PRODUCTOS ON DETALLE_ORDEN.id_producto = PRODUCTOS.id_producto WHERE id_orden = '+id_orden+'', [], function (tx, results) {
+				for(var i = 0; i < results.rows.length; i++)
+				{
+					var p = results.rows.item(i);
+					tx.executeSql('UPDATE DETALLE_ORDEN SET cantidad = '+lista[i].value+' WHERE id_orden = '+id_orden+ 'AND id_producto = ' + p.id_producto);
+					navigator.notification.alert("guardar");
+				}
+			}, errorCB);
+			
+		}
+		
+		function guardar() {
+			var db = window.openDatabase("DEMO", "1.0", "PhoneGap Demo", 200000);
+			db.transaction(guardarOrden, errorCB);
+		}
+		
+		function incrementarOrden(id) {
+			var num = document.getElementById(id);
+			var num2 = parseInt(num.value) + 5;
+			num.value = num2;
+		}
+		
+		function incrementar(id) {
+			var num = document.getElementById(id);
+			var num2 = parseInt(num.value) + 1;
+			num.value = num2;
+		}
+		
+		function disminuir(id) {
+			var num = document.getElementById(id);
+			if(num.value > 0)
+			{
+				var num2 = parseInt(num.value) - 1;
+				num.value = num2;
+			}
+		}
+		
 		function obtenerDatos() {
 			var db = window.openDatabase("DEMO", "1.0", "PhoneGap Demo", 200000);
 			db.transaction(queryDB, errorCB);
@@ -79,6 +120,7 @@
 					<table id = "lista">
 						
 					</table>
+					<input type = "button" id = "guardar" value = "Guardar">
 				</div>
 			</div>
 		</div>
