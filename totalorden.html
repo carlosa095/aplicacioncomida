@@ -52,20 +52,20 @@
 				var productos = document.getElementById("lista");
 				var totalproducto = 0;
 				var total = 0;
-				tx.executeSql('SELECT DETALLE_ORDEN.id_producto, PRODUCTOS.nombre_p, PRODUCTOS.precio, DETALLE_ORDEN.cantidad FROM DETALLE_ORDEN.id_producto = PRODUCTOS.id_producto WHERE DETALLE_ORDEN.id_orden = '+id_orden+'', [], function (tx, results) {
+				navigator.notification.alert("guardar1");
+				/*tx.executeSql('SELECT DETALLE_ORDEN.id_producto, PRODUCTOS.nombre_p, PRODUCTOS.precio, DETALLE_ORDEN.cantidad FROM DETALLE_ORDEN.id_producto = PRODUCTOS.id_producto WHERE DETALLE_ORDEN.id_orden = '+id_orden+'', [], function (tx, results) {
 				var len = results.rows.length;
 				for (var i=0; i<len; i++){
 				var p = results.rows.item(i);
 				if(p.cantidad > 0)
 				{
-				/*var tr = document.createElement("tr");
+				var tr = document.createElement("tr");
 				tr.innerHTML = "<td class = 'nombre'>"+p.nombre_p+"</td><td class = 'nump'>"+p.precio+"</td><td class = 'botones'>"+p.cantidad+"</td>";
 				productos.appendChild(tr);
 				totalproducto = parseFloat(p.cantidad) * parseFloat(p.precio);
-				total = total + totalproducto;*/
-				navigator.notification.alert("guardar1");
+				total = total + totalproducto;
 				}
-				}}, errorCB);
+				}}, errorCB);*/
 				productos.appendChild(document.createElement("tr").innerHTML = "<td class = 'botones'>Total: "+total+"</td>");
 			}
 			
