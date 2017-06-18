@@ -45,11 +45,14 @@
 			for (var i=0; i<len; i++){
 			var p = results.rows.item(i);
 				tx.executeSql('SELECT id_producto, cantidad FROM DETALLE_ORDEN WHERE id_orden = '+id_orden+' AND id_producto = '+p.id_producto+'', [], function (tx, results2) {
-				var p2 = results2.rows.item(i);
-				navigator.notification.alert(p2.id_producto + " " + p2.cantidad);
-					/*var tr = document.createElement("tr");
-					tr.innerHTML = "<td class = 'nombre'>"+p.nombre_p+"</td><td class = 'nump'>"+p.precio+"</td><td class = 'botones'><input type = 'button' value = '+' onclick = 'incrementar(\"text"+i+"\")' class = 'botonfuncion'><input type = 'button' value = '+5' onclick = 'incrementarOrden(\"text"+i+"\")' class = 'botonfuncion'><input type = 'number' id = 'text"+i+"' value = '"+p2.cantidad+"' disabled><input type = 'button' value = '-' onclick = 'disminuir(\"text"+i+"\")' class = 'botonfuncion'></td>";
-					lista.appendChild(tr);*/
+				for(var j = 0; j < results2.rows.length; j++)
+				{
+					var p2 = results2.rows.item(j);
+					navigator.notification.alert(p2.id_producto + " " + p2.cantidad);
+						/*var tr = document.createElement("tr");
+						tr.innerHTML = "<td class = 'nombre'>"+p.nombre_p+"</td><td class = 'nump'>"+p.precio+"</td><td class = 'botones'><input type = 'button' value = '+' onclick = 'incrementar(\"text"+i+"\")' class = 'botonfuncion'><input type = 'button' value = '+5' onclick = 'incrementarOrden(\"text"+i+"\")' class = 'botonfuncion'><input type = 'number' id = 'text"+i+"' value = '"+p2.cantidad+"' disabled><input type = 'button' value = '-' onclick = 'disminuir(\"text"+i+"\")' class = 'botonfuncion'></td>";
+						lista.appendChild(tr);*/
+				}
 				}, errorCB);
 			}}, errorCB);
 		}
