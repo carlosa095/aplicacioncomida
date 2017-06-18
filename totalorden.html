@@ -50,7 +50,7 @@
 		function queryDB(tx) {
 				id_orden = getParameterByName('id_orden');
 				var productos = document.getElementById("lista");
-				var totalproducto = 0;
+				var totalproducto = 1.0;
 				var total = 0;
 				navigator.notification.alert("guardar1");
 				tx.executeSql('SELECT DETALLE_ORDEN.id_producto, PRODUCTOS.nombre_p, PRODUCTOS.precio, DETALLE_ORDEN.cantidad FROM DETALLE_ORDEN INNER JOIN PRODUCTOS ON DETALLE_ORDEN.id_producto = PRODUCTOS.id_producto WHERE DETALLE_ORDEN.id_orden = '+id_orden+'', [], function (tx, results) {
@@ -60,10 +60,10 @@
 				if(p.cantidad > 0)
 				{
 				var tr = document.createElement("tr");
-				tr.innerHTML = "<td class = 'nombre'>"+p.nombre_p+"</td><td class = 'nump'>"+p.precio+"</td><td class = 'botones'>"+p.cantidad+"</td>";
+				tr.innerHTML = "<td class = 'producto'>"+p.nombre_p+"</td><td class = 'precio'>$"+p.precio+"</td><td class = 'cantidad'>"+p.cantidad+"</td>";
 				productos.appendChild(tr);
-				/*totalproducto = parseFloat(p.cantidad) * parseFloat(p.precio);
-				total = total + totalproducto;*/
+				totalproducto = (parseFloat(p.cantidad)) * (parseFloat(p.precio));
+				total = total + totalproducto;
 				}
 				}}, errorCB);
 				//productos.appendChild(document.createElement("tr").innerHTML = "<td class = 'nombre'></td><td class = 'nump'></td><td class = 'botones'>Total: "+total+"</td>");

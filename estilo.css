@@ -101,7 +101,17 @@ input[type=number] {
 	width: 60%;
 }
 
+.producto {
+	width: 80%;
+}
 
+.precio {
+	width: 10%;
+}
+
+.cantidad {
+	width: 10%;
+}
 
 #lista {
 	list-style: none;
@@ -122,6 +132,7 @@ input[type=number] {
 }
 
 #lista tr a {
+	width: 100%;
 	color: white;
 	text-decoration: none;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
