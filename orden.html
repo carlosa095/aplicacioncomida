@@ -51,13 +51,13 @@
 				{
 					var p = results.rows.item(i);
 						var tr = document.createElement("tr");
-						tr.innerHTML = "<td class = 'nombre'>"+p.nombre_p+"</td><td class = 'nump'>$"+p.precio+"</td><td class = 'botones'><input type = 'button' value = '+' onclick = 'incrementar(\"text"+i+"\")' class = 'botonfuncion'><input type = 'button' value = '+5' onclick = 'incrementarOrden(\"text"+i+"\")' class = 'botonfuncion'><input type = 'number' id = 'text"+i+"' value = '"+p.cantidad+"' disabled><input type = 'button' value = '-' onclick = 'disminuir(\"text"+i+"\")' class = 'botonfuncion'></td>";
+						tr.innerHTML = "<td class = 'nombre'>"+p.nombre_p+"</td><td class = 'nump'>$"+p.precio+"</td><td class = 'botones'><input type = 'button' value = '+' onclick = 'incrementar(\"text"+i+"\", "+p.precio+")' class = 'botonfuncion'><input type = 'button' value = '+5' onclick = 'incrementarOrden(\"text"+i+"\","+p.precio+")' class = 'botonfuncion'><input type = 'number' id = 'text"+i+"' value = '"+p.cantidad+"' disabled><input type = 'button' value = '-' onclick = 'disminuir(\"text"+i+"\", "+p.precio+")' class = 'botonfuncion'></td>";
 						lista.appendChild(tr);
 						totalproducto = (parseFloat(p.precio))*(parseFloat(p.cantidad));
 						total = total + totalproducto;
 				}
 				var tr2 = document.createElement("tr");
-				tr2.innerHTML = "<td class = 'nombre'>Total: </td><td class = 'nump'></td><td class = 'botones'>"+total+"</td>";
+				tr2.innerHTML = "<td class = 'nombre'>Total: </td><td class = 'nump'></td><td class = 'botones'><p id = 'total>'"+total+"</p></td>";
 				lista.appendChild(tr2);
 			}, errorCB);
 		}
@@ -86,24 +86,32 @@
 			db.transaction(guardarOrden, errorCB);
 		}
 		
-		function incrementarOrden(id) {
+		function incrementarOrden(id, precio) {
 			var num = document.getElementById(id);
+			var total = document.getElementById("total");
 			var num2 = parseInt(num.value) + 5;
+			var total2 = parseFloat(precio)*5;
 			num.value = num2;
+			total.innerHTML = parseFloat(total.innerHTML) + total2;
 		}
 		
-		function incrementar(id) {
+		function incrementar(id, precio) {
 			var num = document.getElementById(id);
 			var num2 = parseInt(num.value) + 1;
 			num.value = num2;
+			var total = document.getElementById("total");
+			var total2 = parseFloat(precio);
+			total.innerHTML = parseFloat(total.innerHTML) + total;
 		}
 		
-		function disminuir(id) {
+		function disminuir(id, precio) {
 			var num = document.getElementById(id);
 			if(num.value > 0)
 			{
 				var num2 = parseInt(num.value) - 1;
 				num.value = num2;
+				var total = document.getElementById('total');
+				total.innerHTML = parseFloat(total.innerHTML) - parseFloat(precio);
 			}
 		}
 		
