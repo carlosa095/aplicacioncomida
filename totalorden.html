@@ -68,6 +68,13 @@
 				productos.appendChild(document.createElement("tr").innerHTML = "<td class = 'botones'>Total: "+total+"</td>");
 			}
 			
+			function getParameterByName(name) {
+			name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+			var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+			results = regex.exec(location.search);
+			return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+			}
+			
 			function obtenerDatos() {
 				var db = window.openDatabase("DEMO", "1.0", "PhoneGap Demo", 200000);
 				db.transaction(queryDB, errorCB);
