@@ -5,19 +5,12 @@
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
         <title>Aplicación Comida</title>
 		<link type = "text/css" href = "estilo.css" rel = "stylesheet"/>
-		<script type='application/javascript' src='fastclick.js'></script>
 		<script type="text/javascript" src="cordova.js"></script>
 		<script type="text/javascript" charset="utf-8">
 
 		function onLoad() {
 				document.addEventListener("deviceready", onDeviceReady, false);
 			}
-			
-		if ('addEventListener' in document) {
-			document.addEventListener('DOMContentLoaded', function() {
-				FastClick.attach(document.body);
-			}, false);
-		}
 			
 		function onDeviceReady() {
 			navigator.notification.alert("función");
