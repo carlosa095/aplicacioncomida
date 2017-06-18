@@ -24,20 +24,20 @@
 		// Populate the database 
 		//
 		function populateDB(tx) {
-			 tx.executeSql('DROP TABLE IF EXISTS PRODUCTOS');
-			 tx.executeSql('DROP TABLE IF EXISTS ORDENES');
-			 tx.executeSql('DROP TABLE IF EXISTS DETALLE_ORDEN');
+			 //tx.executeSql('DROP TABLE IF EXISTS PRODUCTOS');
+			 //tx.executeSql('DROP TABLE IF EXISTS ORDENES');
+			 //tx.executeSql('DROP TABLE IF EXISTS DETALLE_ORDEN');
 			 tx.executeSql('CREATE TABLE IF NOT EXISTS PRODUCTOS (id_producto INT PRIMARY KEY, nombre_p TEXT NOT NULL, precio TEXT NOT NULL)');
 			 tx.executeSql('CREATE TABLE IF NOT EXISTS ORDENES (id_orden INT PRIMARY KEY, mesa INT NOT NULL, pagado TEXT NOT NULL, servido TEXT NOT NULL)');
 			 tx.executeSql('CREATE TABLE IF NOT EXISTS DETALLE_ORDEN (id_orden INT, id_producto INT, cantidad INT NOT NULL, precio TEXT NOT NULL, FOREIGN KEY (id_producto) REFERENCES PRODUCTOS (id_producto), FOREIGN KEY (id_orden) REFERENCES ORDENES(id_orden))');
-			 tx.executeSql('INSERT INTO PRODUCTOS (id_producto, nombre_p, precio) VALUES (1, "Tacos de bisteck", "12")');
+			 /*tx.executeSql('INSERT INTO PRODUCTOS (id_producto, nombre_p, precio) VALUES (1, "Tacos de bisteck", "12")');
 			 tx.executeSql('INSERT INTO PRODUCTOS (id_producto, nombre_p, precio) VALUES (2, "Tacos de pastor", "12")');
 			 tx.executeSql('INSERT INTO PRODUCTOS (id_producto, nombre_p, precio) VALUES (3, "Tacos de alambre", "12")');
 			 tx.executeSql('INSERT INTO PRODUCTOS (id_producto, nombre_p, precio) VALUES (4, "Burritos de bisteck", "25")');
 			 tx.executeSql('INSERT INTO PRODUCTOS (id_producto, nombre_p, precio) VALUES (5, "Burritos de arrachera", "30")');
 			 tx.executeSql('INSERT INTO PRODUCTOS (id_producto, nombre_p, precio) VALUES (6, "Jugo", "12")');
 			 tx.executeSql('INSERT INTO PRODUCTOS (id_producto, nombre_p, precio) VALUES (7, "Agua", "10")');
-			 tx.executeSql('INSERT INTO PRODUCTOS (id_producto, nombre_p, precio) VALUES (8, "Refresco", "12")');
+			 tx.executeSql('INSERT INTO PRODUCTOS (id_producto, nombre_p, precio) VALUES (8, "Refresco", "12")');*/
 		}
 	 
 		// Transaction error callback
