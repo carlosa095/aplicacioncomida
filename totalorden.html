@@ -53,7 +53,7 @@
 				var totalproducto = 0;
 				var total = 0;
 				navigator.notification.alert("guardar1");
-				tx.executeSql('SELECT DETALLE_ORDEN.id_producto, PRODUCTOS.nombre_p, PRODUCTOS.precio, DETALLE_ORDEN.cantidad FROM DETALLE_ORDEN.id_producto = PRODUCTOS.id_producto WHERE DETALLE_ORDEN.id_orden = '+id_orden+'', [], function (tx, results) {
+				tx.executeSql('SELECT DETALLE_ORDEN.id_producto, PRODUCTOS.nombre_p, PRODUCTOS.precio, DETALLE_ORDEN.cantidad FROM DETALLE_ORDEN INNER JOIN PRODUCTOS ON DETALLE_ORDEN.id_producto = PRODUCTOS.id_producto WHERE DETALLE_ORDEN.id_orden = '+id_orden+'', [], function (tx, results) {
 				var len = results.rows.length;
 				for (var i=0; i<len; i++){
 				var p = results.rows.item(i);
@@ -66,7 +66,7 @@
 				total = total + totalproducto;
 				}
 				}}, errorCB);
-				//productos.appendChild(document.createElement("tr").innerHTML = "<td class = 'botones'>Total: "+total+"</td>");
+				productos.appendChild(document.createElement("tr").innerHTML = "<td class = 'nombre'></td><td class = 'nump'></td><td class = 'botones'>Total: "+total+"</td>");
 			}
 			
 			function getParameterByName(name) {
