@@ -68,7 +68,7 @@
 				for(var i = 0; i < results.rows.length; i++)
 				{
 					var p = results.rows.item(i);
-					//tx.executeSql('UPDATE DETALLE_ORDEN SET cantidad = '+lista[i].value+' WHERE id_orden = '+id_orden+ 'AND id_producto = ' + p.id_producto);
+					tx.executeSql('UPDATE DETALLE_ORDEN SET cantidad = '+lista[i].value+' WHERE id_orden = '+id_orden+ 'AND id_producto = ' + p.id_producto);
 					navigator.notification.alert("guardar " + id_orden + " " + lista[i].value + "");
 				}
 			}, errorCB);
