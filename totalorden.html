@@ -55,7 +55,6 @@
 				mesa.innerHTML = mesa.innerHTML + numeromesa;
 				var totalproducto = 1.0;
 				var total = 0.0;
-				navigator.notification.alert("guardar1");
 				tx.executeSql('SELECT DETALLE_ORDEN.id_producto, PRODUCTOS.nombre_p, PRODUCTOS.precio, DETALLE_ORDEN.cantidad FROM DETALLE_ORDEN INNER JOIN PRODUCTOS ON DETALLE_ORDEN.id_producto = PRODUCTOS.id_producto WHERE DETALLE_ORDEN.id_orden = '+id_orden+'', [], function (tx, results) {
 				var len = results.rows.length;
 				for (var i=0; i<len; i++){

@@ -20,7 +20,6 @@
 			}
 			
 			function onDeviceReady() {
-				navigator.notification.alert("función");
 				var db = window.openDatabase("DEMO", "1.0", "PhoneGap Demo", 200000);
 				db.transaction(queryDB, errorCB);
 			}
@@ -107,19 +106,16 @@
 						var num = 1;
 						if(p.id_orden == null){
 							tx.executeSql('INSERT INTO ORDENES (id_orden, mesa, pagado, servido) VALUES (1, '+mesa+', "No", "No")');
-							navigator.notification.alert("1");
 						}
 						else {
 							var num = p.id_orden + 1;
 							tx.executeSql('INSERT INTO ORDENES (id_orden, mesa, pagado, servido) VALUES ('+num+', '+mesa+', "No", "No")');
-							navigator.notification.alert(num);
 						}
 						tx.executeSql('SELECT id_producto, precio FROM PRODUCTOS', [], function (tx, results2) {
 							var len2 = results2.rows.length;
 							for (var i = 0; i < len2; i++) {
 								var p2 = results2.rows.item(i);
 								tx.executeSql('INSERT INTO DETALLE_ORDEN (id_orden, id_producto, cantidad, precio) VALUES ('+num+', '+p2.id_producto+', '+cantidades[i].value+', '+p2.precio+')');
-								navigator.notification.alert(num);
 								window.location = "index.html";
 							}
 						},errorCB);
