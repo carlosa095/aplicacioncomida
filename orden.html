@@ -41,7 +41,11 @@
 		
 		function queryDB(tx) {
 			id_orden = getParameterByName('id_orden');
-			navigator.notification.alert(id_orden);
+			var numeromesa = getParameterByName('mesa');
+			var totalproducto = 0.0;
+			var total = 0.0;
+			var mesa = document.getElementById("numeromesa");
+			mesa.innerHTML = mesa.innerHTML + numeromesa;
 			var lista = document.getElementById("lista");
 			tx.executeSql('SELECT DETALLE_ORDEN.id_producto, PRODUCTOS.nombre_p, PRODUCTOS.precio, DETALLE_ORDEN.cantidad FROM DETALLE_ORDEN INNER JOIN PRODUCTOS ON DETALLE_ORDEN.id_producto = PRODUCTOS.id_producto WHERE id_orden = '+id_orden+'', [], function (tx, results) {
 				for(var i = 0; i < results.rows.length; i++)
@@ -51,7 +55,12 @@
 						var tr = document.createElement("tr");
 						tr.innerHTML = "<td class = 'nombre'>"+p.nombre_p+"</td><td class = 'nump'>$"+p.precio+"</td><td class = 'botones'><input type = 'button' value = '+' onclick = 'incrementar(\"text"+i+"\")' class = 'botonfuncion'><input type = 'button' value = '+5' onclick = 'incrementarOrden(\"text"+i+"\")' class = 'botonfuncion'><input type = 'number' id = 'text"+i+"' value = '"+p.cantidad+"' disabled><input type = 'button' value = '-' onclick = 'disminuir(\"text"+i+"\")' class = 'botonfuncion'></td>";
 						lista.appendChild(tr);
+						totalproducto = (parseFloat(p.precio))*(parseFloat(p.cantidad));
+						total = total + totalproducto;
 				}
+				var tr2 = document.createElement("tr");
+				tr2.innerHTML = "<td class = 'nombre'>Total: </td><td class = 'nump'></td><td class = 'botones'>"+total+"</td>";
+				lista.appendChild(tr2);
 			}, errorCB);
 		}
 		
@@ -117,6 +126,7 @@
 			</div>
 			<div class = "filas2">
 				<div class = "contenedor3">
+					<p id = "numeromesa">Mesa: </p>
 					<table id = "lista">
 						
 					</table>

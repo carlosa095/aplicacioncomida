@@ -44,7 +44,7 @@
 			var p = results.rows.item(i);
 				navigator.notification.alert(p.id_orden + " " + p.mesa);
 				var tr = document.createElement("tr");
-				tr.innerHTML = "<td class = 'nombre'><p><a href = 'orden.html?id_orden="+p.id_orden+"'>Mesa : " + p.mesa + "</a></p></td>";
+				tr.innerHTML = "<td class = 'nombre'><a href = 'orden.html?id_orden="+p.id_orden+"&mesa="+p.mesa+"'>Mesa : " + p.mesa + "</a></td>";
 				document.getElementById("lista").appendChild(tr);
 			}}, errorCB);
 		}

@@ -49,7 +49,10 @@
 		
 		function queryDB(tx) {
 				id_orden = getParameterByName('id_orden');
+				var numeromesa = getParameterByName('mesa');
 				var productos = document.getElementById("lista");
+				var mesa = document.getElementById("numeromesa");
+				mesa.innerHTML = mesa.innerHTML + numeromesa;
 				var totalproducto = 1.0;
 				var total = 0.0;
 				navigator.notification.alert("guardar1");
@@ -95,6 +98,7 @@
 			</div>
 			<div class = "filas2">
 				<div class = "contenedor3">
+					<p id = "numeromesa">Mesa: </p>
 					<table id = "lista">
 						
 					</table>
