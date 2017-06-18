@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>Aplicación Comida</title>
+		<link type = "text/css" href = "estilo.css" rel = "stylesheet"/>
+		<script type='application/javascript' src='fastclick.js'></script>
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" charset="utf-8">
+
+			
+			
+		// Wait for PhoneGap to load
+		//
+		function onLoad() {
+			document.addEventListener("deviceready", onDeviceReady, false);
+		}
+		
+		if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+		
+		// PhoneGap is ready
+		//
+		function onDeviceReady() {
+			var db = window.openDatabase("DEMO", "1.0", "PhoneGap Demo", 200000);
+			db.transaction(queryDB, errorCB, successCB);
+		}
+	 
+		// Transaction error callback
+		//
+		function errorCB(tx, err) {
+			navigator.notification.alert("Error processing SQL: "+err);
+		}
+	 
+		// Transaction success callback
+		//
+		function successCB() {
+			
+		}
+		
+		function guardarOrden(tx) {
+			tx.executeSql("UPDATE ORDENES SET pagado = 'Si' AND servido = 'Si' WHERE id_orden = "+id_orden+"");
+			window.location = "total.html";
+		}
+		
+		function cobrar() {
+			var db = window.openDatabase("DEMO", "1.0", "PhoneGap Demo", 200000);
+			db.transaction(guardarOrden, errorCB, successCB);
+		}
+
+		var id_orden = 0;
+		
+		function queryDB(tx) {
+				id_orden = getParameterByName('id_orden');
+				var productos = document.getElementById("lista");
+				var totalproducto = 0;
+				var total = 0;
+				tx.executeSql('SELECT DETALLE_ORDEN.id_producto, PRODUCTOS.nombre_p, PRODUCTOS.precio, DETALLE_ORDEN.cantidad FROM DETALLE_ORDEN.id_producto = PRODUCTOS.id_producto WHERE DETALLE_ORDEN.id_orden = '+id_orden+'', [], function (tx, results) {
+				var len = results.rows.length;
+				for (var i=0; i<len; i++){
+				var p = results.rows.item(i);
+				if(p.cantidad > 0)
+				{
+				var tr = document.createElement("tr");
+				tr.innerHTML = "<td class = 'nombre'>"+p.nombre_p+"</td><td class = 'nump'>"+p.precio+"</td><td class = 'botones'>"+p.cantidad+"</td>";
+				productos.appendChild(tr);
+				totalproducto = parseFloat(p.cantidad) * parseFloat(p.precio);
+				total = total + totalproducto;
+				}
+				}}, errorCB);
+				productos.appendChild(document.createElement("tr").innerHTML = "<td class = 'botones'>Total: "+total+"</td>");
+			}
+			
+			function obtenerDatos() {
+				var db = window.openDatabase("DEMO", "1.0", "PhoneGap Demo", 200000);
+				db.transaction(queryDB, errorCB);
+			}
+
+    </script>
+    </head>
+    <body>
+		<div class = "contenedor1">
+			<div class = "filas1">
+				<div class = "contenedor2">
+					<h1>Comida</h1>
+				</div>
+			</div>
+			<div class = "filas2">
+				<div class = "contenedor3">
+					<table id = "lista">
+						
+					</table>
+					<input type = "button" id = "guardar" value = "Cobrar" onclick = "cobrar()" class = "boton">
+				</div>
+			</div>
+		</div>
+    </body>
+</html>
