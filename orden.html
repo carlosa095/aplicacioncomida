@@ -40,11 +40,11 @@
 		function queryDB(tx) {
 			var id_orden = getParameterByName('id_orden');
 			var lista = document.getElementById("lista");
-			tx.executeSql('SELECT nombre_p, precio FROM PRODUCTOS', [], function (tx, results) {
+			tx.executeSql('SELECT id_producto, nombre_p, precio FROM PRODUCTOS', [], function (tx, results) {
 			var len = results.rows.length;
 			for (var i=0; i<len; i++){
 			var p = results.rows.item(i);
-				tx.executeSql('SELECT id_producto, cantidad FROM DETALLE_ORDEN WHERE id_orden = ? AND id_producto = ?', [id_orden, i+1], function (tx, results2) {
+				tx.executeSql('SELECT id_producto, cantidad FROM DETALLE_ORDEN WHERE id_orden = ? AND id_producto = ?', [id_orden, p.id_producto], function (tx, results2) {
 				var p2 = results2.rows.item(i);
 				navigator.notification.alert(p2.id_producto + " " + p2.cantidad);
 					/*var tr = document.createElement("tr");
